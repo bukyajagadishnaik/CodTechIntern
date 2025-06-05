@@ -1,0 +1,6 @@
+# Ignore virtual environments
+myvenv/
+venv/
+
+# Ignore Jupyter checkpoints
+.ipynb_checkpoints/
