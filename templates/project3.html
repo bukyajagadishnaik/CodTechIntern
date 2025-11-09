@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-8">
+      <h3>Sentiment Analyzer</h3>
+      <p class="text-muted">Enter a sentence to classify its sentiment.</p>
+      <form method="post">
+        <div class="mb-3">
+          <label class="form-label">Text</label>
+          <textarea class="form-control" name="text" rows="5" required>{{ form.text if form }}</textarea>
+        </div>
+        <button class="btn btn-primary">Predict</button>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Result</h5>
+          {% if result %}
+            {% if result.error %}
+              <div class="text-danger">{{ result.error }}</div>
+            {% else %}
+              <div class="card p-3 mt-2">
+                <strong>Sentiment:</strong>
+                <div class="display-6">{{ result.prediction }}</div>
+                {% if result.probability %}
+                  <div class="text-muted">Confidence: {{ (result.probability * 100) | round(1) }}%</div>
+                {% endif %}
+                {% if metrics.accuracy %}
+                  <div class="text-muted">Accuracy (train): {{ metrics.accuracy | round(3) }}</div>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% else %}
+            <div class="text-muted">No prediction yet.</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

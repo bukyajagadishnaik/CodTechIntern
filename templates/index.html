@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <div class="text-center mb-4">
+  <h1 class="display-6 fw-bold">CodTech ML Intelligence Suite</h1>
+  <p class="text-muted">
+    A collection of intelligent machine learning applications built from real-world datasets
+  </p>
+</div>
+
+<div class="row g-4">
+  <!-- Project 1 -->
+  <div class="col-md-6 col-lg-3">
+    <a href="/project1" class="text-decoration-none text-dark">
+      <div class="card h-100 shadow-sm hover-card border-0">
+        <div class="card-body text-center">
+          <h5 class="card-title fw-semibold">Customer Churn Prediction</h5>
+          <p class="card-text text-muted small">
+            Analyze customer data to predict who is likely to leave a service using advanced classification models.
+          </p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Project 2 -->
+  <div class="col-md-6 col-lg-3">
+    <a href="/project2" class="text-decoration-none text-dark">
+      <div class="card h-100 shadow-sm hover-card border-0">
+        <div class="card-body text-center">
+          <h5 class="card-title fw-semibold">Breast Cancer Diagnosis</h5>
+          <p class="card-text text-muted small">
+            A gradient boosting–based model that predicts whether a tumor is benign or malignant from medical attributes.
+          </p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Project 3 -->
+  <div class="col-md-6 col-lg-3">
+    <a href="/project3" class="text-decoration-none text-dark">
+      <div class="card h-100 shadow-sm hover-card border-0">
+        <div class="card-body text-center">
+          <h5 class="card-title fw-semibold">Sentiment Analysis</h5>
+          <p class="card-text text-muted small">
+            Enter any text or sentence to analyze emotional tone and classify sentiment as positive or negative.
+          </p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Project 4 -->
+  <div class="col-md-6 col-lg-3">
+    <a href="/project4" class="text-decoration-none text-dark">
+      <div class="card h-100 shadow-sm hover-card border-0">
+        <div class="card-body text-center">
+          <h5 class="card-title fw-semibold">Stock Price Forecasting</h5>
+          <p class="card-text text-muted small">
+            Predict future stock prices from recent market data using regression and time-series forecasting techniques.
+          </p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+
+{% endblock %}

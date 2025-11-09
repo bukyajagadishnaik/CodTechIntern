@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-8">
+      <h3>Breast Cancer Classifier (Advanced)</h3>
+      <p class="text-muted">Enter a few representative features to get a quick prediction (other features are filled with dataset means).</p>
+      <form method="post">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label">Mean radius</label>
+              <input class="form-control" name="mean radius" value="{{ form['mean radius'] if form }}" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Mean texture</label>
+              <input class="form-control" name="mean texture" value="{{ form['mean texture'] if form }}" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Mean perimeter</label>
+              <input class="form-control" name="mean perimeter" value="{{ form['mean perimeter'] if form }}" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label">Mean area</label>
+              <input class="form-control" name="mean area" value="{{ form['mean area'] if form }}" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Mean smoothness</label>
+              <input class="form-control" name="mean smoothness" value="{{ form['mean smoothness'] if form }}" required>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary">Predict</button>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Result</h5>
+          {% if result %}
+            {% if result.error %}
+              <div class="text-danger">{{ result.error }}</div>
+            {% else %}
+              <div class="card p-3 mt-2">
+                <strong>Prediction:</strong>
+                <div class="display-6">{{ result.prediction }}</div>
+                {% if metrics.accuracy %}
+                  <div class="text-muted">Accuracy (test): {{ metrics.accuracy | round(3) }}</div>
+                {% endif %}
+                {% if metrics.top_features %}
+                  <hr>
+                  <strong>Top features (by importance)</strong>
+                  <ul class="small">
+                    {% for name, val in metrics.top_features %}
+                      <li>{{ name }}: {{ (val*100) | round(2) }}%</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% else %}
+            <div class="text-muted">No prediction yet.</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

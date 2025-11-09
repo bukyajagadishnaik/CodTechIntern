@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-8">
+      <h3>Stock Price Predictor</h3>
+      <p class="text-muted">Provide the last 5 closing prices (comma-separated) to predict the next price.</p>
+      <form method="post">
+        <div class="mb-3">
+          <label class="form-label">Last 5 prices (comma-separated)</label>
+          <input class="form-control" name="prices" value="{{ form.prices if form }}" required>
+        </div>
+        <button class="btn btn-primary">Predict</button>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Result</h5>
+          {% if result %}
+            {% if result.error %}
+              <div class="text-danger">{{ result.error }}</div>
+            {% else %}
+              <div class="card p-3 mt-2">
+                <strong>Predicted next price:</strong>
+                <div class="display-6">{{ result.prediction | round(3) }}</div>
+                {% if metrics.rmse %}
+                  <div class="text-muted">RMSE: {{ metrics.rmse | round(3) }}</div>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% else %}
+            <div class="text-muted">No prediction yet.</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

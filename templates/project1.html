@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-8">
+      <h3>Customer Churn Prediction</h3>
+      <p class="text-muted">Provide customer attributes below and click Predict. Defaults are available if you skip fields.</p>
+      <form method="post">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label">Tenure (months)</label>
+              <input class="form-control" name="tenure" value="{{ form.tenure if form }}" placeholder="e.g. 12">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Monthly Charges ($)</label>
+              <input class="form-control" name="monthly_charges" value="{{ form.monthly_charges if form }}" placeholder="e.g. 65.50">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Number of Services</label>
+              <select class="form-select" name="num_services">
+                <option value="">(use default)</option>
+                {% for opt in [1,2,3,4,5] %}
+                  <option value="{{ opt }}" {% if form and form.num_services == (opt|string) %}selected{% endif %}>{{ opt }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label">Contract Type</label>
+              <select class="form-select" name="contract">
+                <option value="">(use default)</option>
+                <option value="Month-to-month" {% if form and form.contract=='Month-to-month' %}selected{% endif %}>Month-to-month</option>
+                <option value="One year" {% if form and form.contract=='One year' %}selected{% endif %}>One year</option>
+                <option value="Two year" {% if form and form.contract=='Two year' %}selected{% endif %}>Two year</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Internet Service</label>
+              <select class="form-select" name="internet_service">
+                <option value="">(use default)</option>
+                <option value="DSL" {% if form and form.internet_service=='DSL' %}selected{% endif %}>DSL</option>
+                <option value="Fiber optic" {% if form and form.internet_service=='Fiber optic' %}selected{% endif %}>Fiber optic</option>
+                <option value="No" {% if form and form.internet_service=='No' %}selected{% endif %}>No</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Payment Method</label>
+              <select class="form-select" name="payment_method">
+                <option value="">(use default)</option>
+                <option value="Electronic check" {% if form and form.payment_method=='Electronic check' %}selected{% endif %}>Electronic check</option>
+                <option value="Mailed check" {% if form and form.payment_method=='Mailed check' %}selected{% endif %}>Mailed check</option>
+                <option value="Bank transfer" {% if form and form.payment_method=='Bank transfer' %}selected{% endif %}>Bank transfer</option>
+                <option value="Credit card" {% if form and form.payment_method=='Credit card' %}selected{% endif %}>Credit card</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary">Predict</button>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Result</h5>
+          {% if result %}
+            {% if result.error %}
+              <div class="text-danger">{{ result.error }}</div>
+            {% else %}
+              <div class="card p-3 mt-2">
+                <strong>Prediction:</strong>
+                <div class="display-6">{{ result.prediction }}</div>
+                {% if metrics.accuracy %}
+                  <div class="text-muted">Accuracy (test): {{ metrics.accuracy | round(3) }}</div>
+                {% endif %}
+                {% if metrics.top_features %}
+                  <hr>
+                  <strong>Top features</strong>
+                  <ul class="small">
+                    {% for name, val in metrics.top_features %}
+                      <li>{{ name }}: {{ (val*100) | round(2) }}%</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% else %}
+            <div class="text-muted">No prediction yet.</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

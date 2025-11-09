@@ -1,3 +1,28 @@
+# CodTech Intern — ML Projects Web App
+
+This project bundles four small ML notebook demos into a single Flask web app. Each notebook's logic was extracted into `codtech_backend/` modules and trained at app startup.
+
+Files:
+- `app.py` — Flask application entry point.
+- `codtech_backend/` — backend modules for each project (project1..project4).
+- `templates/` — HTML templates (Bootstrap 5).
+- `static/style.css` — small custom CSS.
+- `requirements.txt` — Python dependencies.
+
+Quick start (Windows PowerShell):
+
+```powershell
+# create and activate virtualenv (optional)
+python -m venv .venv; .\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python app.py
+```
+
+Open http://127.0.0.1:5000 in your browser.
+
+Notes:
+- Models are trained in memory when the Flask app starts (no pickles used).
+- The UI is intentionally simple; you can extend the forms and add validation.
 # CodTechIntern
 
 This repository contains a collection of machine learning mini-projects completed as part of the **CodTech Intern** program. Each notebook demonstrates the use of different ML techniques and libraries to solve practical problems such as classification, sentiment analysis, and recommendation systems.
