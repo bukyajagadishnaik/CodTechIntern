@@ -1,10 +1,10 @@
 # CodTech Intern — ML Projects Web App
 
-This project bundles four small ML notebook demos into a single Flask web app. Each notebook's logic was extracted into `codtech_backend/` modules and trained at app startup.
+This project bundles four small ML notebook demos into a single Flask web app. Each notebook's logic was extracted into `models/` modules and trained at app startup.
 
 Files:
 - `app.py` — Flask application entry point.
-- `codtech_backend/` — backend modules for each project (project1..project4).
+- `models` — backend notebook modules for each project
 - `templates/` — HTML templates (Bootstrap 5).
 - `static/style.css` — small custom CSS.
 - `requirements.txt` — Python dependencies.
@@ -31,17 +31,17 @@ This repository contains a collection of machine learning mini-projects complete
 
 ## 📁 Project Structure
 
-- **Decision Tree Implementation.ipynb**  
-  A notebook demonstrating how to build and visualize a decision tree classifier using scikit-learn.
+- **Customer Churn Prediction**  
+  Predict whether a customer will discontinue a service based on account data, usage patterns, and tenure using classification models like Logistic Regression and Random Forest.
 
-- **Image Classification Model Using an Inbuilt Dataset.ipynb**  
-  Uses built-in datasets from Keras or scikit-learn to build a CNN or DNN for image classification tasks.
-
-- **Recommendation System Using Collaborative Filtering.ipynb**  
-  A collaborative filtering-based recommendation system using user-item interaction matrices.
-
-- **Sentiment Analysis Using TF-IDF and Logistic Regression.ipynb**  
-  Implements a logistic regression model with TF-IDF features to classify text sentiment (positive/negative).
+- **Breast Cancer Diagnosis**  
+  A medical machine learning model that predicts whether a tumor is benign or malignant using Gradient Boosting and diagnostic feature analysis.
+  
+- **Sentiment Analysis**  
+  Classifies text sentiment as positive or negative using Natural Language Processing with TF-IDF vectorization and Logistic Regression.
+  
+- **Stock Price Forecasting**  
+  Predicts future stock closing prices based on recent historical data using regression and time-series modeling techniques.
 
 ---
 
@@ -53,8 +53,7 @@ This repository contains a collection of machine learning mini-projects complete
 - Pandas
 - NumPy
 - Matplotlib / Seaborn
-- TensorFlow / Keras (for image classification)
-- NLP Tools (TF-IDF from `sklearn.feature_extraction.text`)
+- NLP Tools 
 
 ---
 
